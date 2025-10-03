@@ -1,10 +1,10 @@
 # Simple ECS web application
 
-## Prerequisits:
+## Prerequisites:
 
 - AWS account
-- aws cli installed.
-- terraform
+- AWS CLI installed
+- Terraform
 - jq
 
 ## Architecture:
@@ -14,11 +14,12 @@
 - Private subnets with VPC endpoints
 - ECS tasks run in private subnets
 
-Repository contains terraform template for provisioning all required aws resources to run ECS tasks. 
+The repository contains a Terraform template for provisioning all required AWS resources to run ECS tasks.
 
-Most of the resources moved to separate 'infra' module: https://github.com/it6y6en/ecs-infra
+Most of the resources are moved to a separate module named `infra`: https://github.com/it6y6en/ecs-infra
 
-Application code in `app/` folder with `Dockerfile`. Simple static wep application runs with nginx.
+Application code is in the `app/` folder with a `Dockerfile`. A simple static web application runs with nginx.
+
 
 ## Usage (2 options):
 
@@ -63,7 +64,7 @@ public url in terraform outputs: `dns_name`
 - ECS image scans can be enabled to analyze images for known threats and vulnerabilities
 - ALB allows only HTTP incoming traffic (IP addresses whitelist can be provided with `.tfvars`)
 - Containers run in private subnets. Only ingress HTTP traffic from ALB is allowed.
-- No NAT and routes to the internet from private subnets. Endpoints are used to access ECR and CloudWatch.
+- Private subnets have no outbound internet access. Endpoints are used to access ECR and CloudWatch.
 - Also, WAF can be set up on top of ALB to provide more security features.
 
 
